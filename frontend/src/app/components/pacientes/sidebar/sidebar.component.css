@@ -1,0 +1,16 @@
+/* sidebar.component.css */
+p-panelMenu {
+  margin: 0;
+  padding: 0;
+}
+
+/* sidebar.component.css */
+p-menuitem {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+/* sidebar.component.css */
+p-menuitem .pi {
+  vertical-align: middle; /* Ajusta la alineación vertical del icono */
+}

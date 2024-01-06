@@ -1,0 +1,25 @@
+
+header {
+    /* background: url('../img/BannerSisamed.png'); */
+    background-color: #0b9ac5;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 80px;
+}
+
+
+h1 {
+    font-family: 'Noto Sans', sans-serif;
+    margin-bottom: 1px; 
+
+  }
+  p {
+    font-family: 'Noto Serif', sans-serif;
+    margin-top: 0;
+
+  }
+  

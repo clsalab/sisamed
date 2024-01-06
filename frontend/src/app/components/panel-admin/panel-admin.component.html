@@ -1,0 +1,25 @@
+<div class="app-content">
+    <p-splitter [panelSizes]="[20, 80]" styleClass="mb-5">
+      <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center">
+          <!--  Panel 1 -->
+          <p-panelMenu [model]="items" [style]="{'width':'100%'}" [multiple]="true" class="custom-panel-menu">
+            <ng-template let-item pTemplate="item">
+              <a style="text-decoration: none; cursor: pointer;" [ngClass]="{'ui-menuitem-text': true, 'ui-state-disabled': item.disabled}" [style.textDecoration]="'none'">
+                <i [class]="item.icon"></i>
+                {{item.label}}
+              </a>
+            </ng-template>
+          </p-panelMenu>
+  
+        </div>
+      </ng-template>
+      <ng-template pTemplate>
+        <div class="col flex align-items-center justify-content-center">
+          <!-- Panel 2 -->
+          <!-- Contenido de la División 2 -->
+          <router-outlet></router-outlet>
+        </div>
+      </ng-template>
+    </p-splitter>
+</div>

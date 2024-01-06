@@ -1,0 +1,53 @@
+<div *ngIf="loading" class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 text-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div *ngIf="!loading && userLoginOn" class="container mt-3">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="titulo mb-3">LISTADO DE USUARIOS</h5>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <input id="searchInput" [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="Buscar por nombre">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" routerLink="/panel-admin/register-user">Nuevo</button>
+                    </div>
+
+                    <table *ngIf="listUsers.length > 0" class="table mt-4">
+                        <thead>
+                            <tr>
+                                <!-- Otros encabezados -->
+                                <th scope="col">Nombre Completo</th>
+                                <th scope="col">Correo electrónico</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Rol</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <tr *ngFor="let user of listUsers | filter: searchTerm">
+                                <td>{{user.username}}</td>
+                                <td>{{user.useremail}}</td>
+                                <td>{{user.userestado}}</td>
+                                <td>{{user.userroles}}</td>
+                                <td>
+                                    <i [routerLink]="['/panel-admin/edit-user/', user._id]" class="fa-solid fa-pen-to-square text-primary"></i>
+                                    <i (click)="eliminarUser(user._id)" class="fa-solid fa-trash text-danger"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ng-template #loading>Cargando...</ng-template>
+                    <h5 style="text-align: start; margin-top: 10px;" *ngIf="listUsers.length == 0">No hay usuarios para mostrar</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div *ngIf="loading" class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 text-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div *ngIf="!loading" class="container mt-3">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card" id="container">
+                <div class="card-body text-center" id="login-container">
+                    <span class="titulo">{{ titulo | uppercase}}</span>
+                    <form class="mt-3" [formGroup]="editUserForm" (ngSubmit)=" actualizarUser()">
+                        <div class="mb-3">
+                            <input type="text" formControlName="username" class="form-control" placeholder="Nombre Completo">
+                            <div class="text-danger"
+                            *ngIf="editUserForm.get('username')?.hasError('required') && editUserForm.get('username')?.touched">
+                                <span>Digite el nombre completo</span>
+                            </div>
+                        </div>
+                        <!-- ... -->
+                        <div class="mb-3">
+                            <input type="email" formControlName="useremail" id="useremail" class="form-control" placeholder="email" required>
+                            <div *ngIf="editUserForm.get('useremail')?.invalid && (editUserForm.get('useremail')?.dirty || editUserForm.get('useremail')?.touched)"
+                                class="text-danger">
+                                <div *ngIf="editUserForm.get('useremail')?.hasError('required')">Digite su correo electrónico</div>
+                                <div *ngIf="editUserForm.get('useremail')?.hasError('email')">
+                                    El email debe tener un formato válido.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ... -->
+
+                        <div class="mb-3">
+                            <select formControlName="userroles" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [attr.selected]="true">Tipo de usuario</option>
+                                <option value="user">Usuario</option>
+                                <option value="admin">Administrador</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="editUserForm.get('userroles')?.hasError('required') && editUserForm.get('userroles')?.touched">
+                                <span>Seleccione el tipo de usuario</span>
+                            </div>
+                        </div>
+                        <div *ngIf="registrationMessage" class="message text-danger">{{ registrationMessage }}</div>
+                            <div class="buttons-container mb-3">
+                                <button class="btn btn-success cancel-button" routerLink="/panel-admin/items-users">Cancelar</button>
+                                <button type="submit"  [disabled]="editUserForm.invalid" class="btn btn-secondary register-button">Actualizar</button>
+                            </div>
+                          
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

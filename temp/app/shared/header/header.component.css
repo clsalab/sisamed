@@ -1,0 +1,16 @@
+header {
+    background: url(https://i.postimg.cc/Yq5qY0sw/Banner-Sisamed.jpg);
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el fondo */
+    background-position: center;
+    height: 118px;
+}
+
+h1 {
+    font-family: 'Noto Sans', sans-serif;
+
+  }
+  p {
+    font-family: 'Noto Serif', sans-serif;
+
+  }
+  

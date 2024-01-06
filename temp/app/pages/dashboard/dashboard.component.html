@@ -1,0 +1,10 @@
+<app-nav></app-nav>
+<p *ngIf="!userLoginOn">Usuario No Autenticado</p>
+<p *ngIf="userLoginOn">Usuario Autenticado</p>
+<div *ngIf="userLoginOn">
+  <ng-container *ngIf="userData; else loading">
+    <p>Nombre: {{ userData.username }}</p>
+    <p>Email: {{ userData.useremail }}</p>
+  </ng-container>
+  <ng-template #loading>Cargando...</ng-template>
+</div>

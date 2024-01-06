@@ -1,0 +1,77 @@
+<div *ngIf="loading" class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 text-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div *ngIf="!loading" class="container mt-3">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card" id="container">
+                <div class="card-body text-center" id="login-container">
+                    <span class="titulo">REGISTRAR CONSULTORIO</span>
+                    <form class="mt-3" [formGroup]="consultsForm" (ngSubmit)="register()">
+                        <!-- //input -Nombre -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="conNombre" class="form-control" placeholder="Nombres">
+                            <div class="text-danger" *ngIf="consultsForm.get('conNombre')?.hasError('required') && (consultsForm.get('conNombre')?.dirty || consultsForm.get('conNombre')?.touched)">
+                                <span>Digite el nombres del consultorio</span>
+                            </div>
+                        </div>
+                       <!--  //input -Ubicación -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="conUbicacion" class="form-control" placeholder="Ubicación">
+                            <div class="text-danger" *ngIf="consultsForm.get('conUbicacion')?.hasError('required') && (consultsForm.get('conUbicacion')?.dirty || consultsForm.get('conUbicacion')?.touched)">
+                                <span>Digite la ubicación</span>
+                            </div>
+                        </div>
+                         <!--  //Tipo Especialidad -->
+                        <div class="mb-3">
+                            <select formControlName="conEspecialidad" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [attr.selected]="true">Especialidad</option>
+                                <option value="mg">Médico General</option>
+                                <option value="ti">Médico Odontólogo</option>
+                                <option value="cc">Médico Cirujano</option>
+                                <option value="ce">Ginecólogo</option>
+                                <option value="otro">Otra especialidad</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="consultsForm.get('conEspecialidad')?.hasError('required') && consultsForm.get('conEspecialidad')?.touched">
+                                <span>Seleccione la especialidad del consultorio</span>
+                            </div>
+                        </div>
+                        
+                       <!--  //input - Teléfono -->
+                    <!--  <div class="mb-3">
+                        <input type="number" formControlName="medTelefono" class="form-control" placeholder="Celular">
+                        <div class="text-danger" *ngIf="consultsForm.get('medTelefono')?.hasError('required') && (consultsForm.get('medTelefono')?.dirty || consultsForm.get('medTelefono')?.touched)">
+                        <span>Digite su número de celular,no se admiten: puntos, comas o gion</span>
+                        </div>
+                        <div class="text-danger" *ngIf="consultsForm.get('medTelefono')?.hasError('invalidTelefono')">
+                        {{ consultsForm.get('medTelefono')?.getError('message') }}
+                        </div>
+                    </div> -->
+                       <!--  // Estado -->
+                        <div class="mb-3">
+                            <select formControlName="conEstado" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [attr.selected]="true">Estado del consultorio</option>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="consultsForm.get('conEstado')?.hasError('required') && consultsForm.get('conEstado')?.touched">
+                                <span>Seleccione el estado del consultorio</span>
+                            </div>
+                        </div> 
+                        <!-- Message -->
+                        <div *ngIf="registrationMessage" class="message text-danger">{{ registrationMessage }}</div>
+                        <!-- Button -->
+                            <div class="buttons-container mb-3">
+                                <button class="btn btn-success cancel-button" routerLink="/panel-admin/items-consults">Cancelar</button>
+                                <button type="submit"  [disabled]="consultsForm.invalid" class="btn btn-secondary register-button">Registrar</button>
+                            </div>  
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

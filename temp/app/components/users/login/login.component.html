@@ -1,0 +1,27 @@
+<div id="container">
+    <div id="login-container">
+        <h2>Inicio de sesión</h2>
+        <form [formGroup]="loginForm" id="login-form">
+            <p class="text-danger">{{loginError}}</p>
+            <input formControlName="useremail" type="text" id="username" placeholder="Usuario" required>
+            <div *ngIf="useremail.invalid && (useremail.dirty || useremail.touched)"
+                class="text-danger"
+                >
+                <div *ngIf="useremail.errors?.['required']">Digite su correo electrónico</div>
+                <div *ngIf="useremail.errors?.['useremail']">
+                    El email debe tener un formato válido.
+                </div>
+            </div>
+            <input formControlName="userpassword" type="password" id="userpassword" placeholder="Contraseña" required>
+            <div *ngIf="userpassword.invalid && (userpassword.dirty || userpassword.touched)"
+                class="text-danger"
+                >
+                <div *ngIf="useremail.errors?.['required']">Digite su contraseña</div>
+            </div>
+            <button type="button" (click)="login()">Iniciar sesión</button>
+            <button type="button" class="cancel" onclick="cancel()">Cancelar</button>
+            <a href="#" id="forgot-userpassword">¿Olvidaste tu contraseña?</a>
+            <a routerLink="/register" id="register-link">¿No tienes cuenta? Regístrate</a>
+        </form>
+    </div>
+</div>

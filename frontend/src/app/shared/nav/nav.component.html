@@ -1,0 +1,80 @@
+
+<nav class="navbar navbar-expand-lg bg-white border-bottom border-body" data-bs-theme="light" [ngClass]="{'fixed-navbar': isNavbarFixed}">
+    <div class="container-fluid">
+      <img src="assets/logo_sisamed2.png" alt="Logo de SISAMED" class="navbar-logo">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">      
+            <li class="nav-item">
+            <a class="nav-link nav-item-link " aria-current="page" routerLink="/inicio">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-item-link" routerLink="/servicios/portafolio">Portafolio</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link nav-item-link dropdown-toggle" routerLink="/servicios/nosotros" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Nosotros
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/servicios/nosotros">Quienes somos</a></li>
+              <li><a class="dropdown-item" routerLink="/servicios/nosotros">Misión/Visión</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" routerLink="/servicios/nosotros/contacto">Contacto</a></li>
+            </ul>
+          </li>
+
+                    
+          <li *ngIf="userLoginOn" class="nav-item dropdown">
+            <a class="nav-link nav-item-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Trámite Online
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item dropdown">
+                <a class="dropdown-item" routerLink="/profile-update">Actualizar Datos</a>
+              </li>
+              <li class="dropdown-item dropdown">
+                <a class="dropdown-item" routerLink="/show-user">Certificado</a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item dropdown dropdown-start">
+                <a class="dropdown-item" routerLink="/citas">Citas Médicas</a>
+                <ul class="dropdown-menu dropdown-menu-start">
+                  <li><a class="dropdown-item" href="#">Nueva cita</a></li>
+                  <li><a class="dropdown-item" href="#">Consultar</a></li>
+                  <li><a class="dropdown-item" href="#">Actualizar</a></li>
+                  <li><a class="dropdown-item" href="#">Cancelar</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          
+          <li *ngIf="userLoginOn" class="nav-item">
+            <a class="nav-link nav-item-link" routerLink="/reportes">Panel Médico</a>
+          </li>
+          <li *ngIf="userLoginOn" class="nav-item">
+            <a class="nav-link nav-item-link" routerLink="/panel-admin">Panel Admin</a>
+          </li>
+          
+          
+
+              
+
+          <li *ngIf="!userLoginOn" class="nav-item">
+            <button class="nav-link nav-item-link" (click)="redirectToLogin()">Iniciar Sesión</button>
+          </li>
+          <li *ngIf="userLoginOn" class="nav-item">
+            <button class="nav-link nav-item-link" (click)="logout()">Cerrar Sesión</button>
+          </li>
+          <li class="nav-item">
+            <button *ngIf="!userLoginOn" class="nav-link nav-item-link" (click)="redirectToRegister()">Regístrate</button>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>

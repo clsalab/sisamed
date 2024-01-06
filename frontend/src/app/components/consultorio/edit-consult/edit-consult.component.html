@@ -1,0 +1,67 @@
+<div *ngIf="loading" class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 text-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div *ngIf="!loading" class="container mt-3">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card" id="container">
+                <div class="card-body text-center" id="login-container">
+                    <span class="titulo">{{ titulo | uppercase}}</span>
+                    <form class="mt-3" [formGroup]="editConsultForm" (ngSubmit)="actualizarConsult()">
+
+                        <!-- //input -Nombre -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="conNombre" class="form-control" placeholder="Nombre del consultorio">
+                            <div class="text-danger" *ngIf="editConsultForm.get('conNombre')?.hasError('required') && (editConsultForm.get('conNombre')?.dirty || editConsultForm.get('conNombre')?.touched)">
+                                <span>Digite nombre del consultorio</span>
+                            </div>
+                        </div>
+                       <!--  //input -Apellidos -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="conUbicacion" class="form-control" placeholder="Ubicación">
+                            <div class="text-danger" *ngIf="editConsultForm.get('conUbicacion')?.hasError('required') && (editConsultForm.get('conUbicacion')?.dirty || editConsultForm.get('conUbicacion')?.touched)">
+                                <span>Digite ubicación del consultorio</span>
+                            </div>
+                        </div>
+                         <!--  //Tipo Especialidad -->
+                        <div class="mb-3">
+                            <select formControlName="conEspecialidad" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [selected]="!editConsultForm.get('conEspecialidad')?.value">Especialidad</option>
+                                <option value="mg">Médico General</option>
+                                <option value="ti">Médico Odontólogo</option>
+                                <option value="cc">Médico Cirujano</option>
+                                <option value="ce">Ginecólogo</option>
+                                <option value="otro">Otra especialidad</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="editConsultForm.get('conEspecialidad')?.hasError('required') && editConsultForm.get('conEspecialidad')?.touched">
+                                <span>Seleccione la especialidad del médico</span>
+                            </div>
+                        </div> 
+                       <!--  // Estado -->
+                        <div class="mb-3">
+                            <select formControlName="conEstado" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [selected]="!editConsultForm.get('conEstado')?.value">Estado del consultorio</option>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="editConsultForm.get('conEstado')?.hasError('required') && editConsultForm.get('conEstado')?.touched">
+                                <span>Seleccione el estado del consultorio</span>
+                            </div>
+                        </div>
+                        <!-- Message -->
+                        <div *ngIf="registrationMessage" class="message text-danger">{{ registrationMessage }}</div>
+                        <!-- Button -->
+                            <div class="buttons-container mb-3">
+                                <button class="btn btn-success cancel-button" routerLink="/panel-admin/items-consults">Cancelar</button>
+                                <button type="submit"  [disabled]="editConsultForm.invalid" class="btn btn-secondary register-button">Actualizar</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+/* Estilos para el menú fijo */
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.hidden-nav {
+  display: none;
+}
+
+  
+  .navbar-logo {
+    max-width: 338px; /* Ajusta según el tamaño deseado para tu logotipo */
+    height: 2em;
+    display: block; /* Evita que la imagen se extienda más allá del contenedor */
+  }
+
+/* Estilos para el submenu "Citas Médicas" */
+.dropdown-item.dropdown:hover .dropdown-menu-start {
+  display: block;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    background-color: #e9e9e9; /* Cambia el color según tus preferencias */
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+}
+
+.navbar-nav .nav-item.active > .nav-link {
+    background-color: #e9e9e9; /* O el color de fondo predeterminado para el estado activo */
+}
+
+
+
+
+/* Ajustes de estilo adicionales según tus preferencias */

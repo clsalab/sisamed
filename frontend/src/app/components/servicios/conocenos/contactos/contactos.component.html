@@ -1,0 +1,52 @@
+<div class="center">
+
+	<div class="card">
+		<div class="additional">
+			<div class="user-card">
+				<div class="level center">
+					CENTRO MEDICO JERICÓ
+				</div>
+        <div class="logo-container">
+          <div class="logo">
+              <img src="./assets/favicon2.png">
+          </div>
+        </div>
+				<div class="points center">
+				SISAMED
+				</div>
+				
+			</div>
+			<div class="more-info">
+        <h1>CONTÁCTENOS</h1>
+        <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm.value)">
+          <div class="form-group">
+            <input type="text" placeholder="Escribe tu nombre*"  clas="form-control" name="name" [ngModel]="name" required/>
+          </div>
+          <div class="form-group">
+            <input name="emailaddress" placeholder="escribe tu Correo*" class="form-control" type="email" name="email" [(ngModel)]="email" required/>
+          </div>
+          <div class="form-group">
+            <textarea rows="4" cols="40" name="subject" placeholder="Dejanos tu mensaje*" class="form-control" name="message" [(ngModel)]="message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Submit</button>
+        </form>
+			</div>
+		</div>
+		<div class="general more-info">
+      <h1>Dejanos tus datos</h1>
+      <div class="coords">
+        <span class="strong">Nombre: </span>
+        <span>{{contactForm.value.name}}</span>
+      </div>
+      <div class="coords">
+        <span class="strong">Correo: </span>
+        <span>{{contactForm.value.email}}</span>
+      </div>
+      <div class="coords">
+        <span class="strong">Mensaje: </span>
+        <span>{{contactForm.value.message}}</span>
+      </div>
+			<span class="more">Obtener más información.</span>
+		</div>
+	</div>
+</div>

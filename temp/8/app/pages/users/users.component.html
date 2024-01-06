@@ -1,0 +1,15 @@
+<!-- users.component.html -->
+<div *ngIf="userLoginOn">
+    <p>Usuario Autenticado</p>
+    <div class="form-floating mb-3">
+      <form [formGroup]="userForm">
+        <label for="username">Nombre de Usuario:</label>
+        <input type="text" id="username" formControlName="username">
+  
+        <label for="useremail">Email:</label>
+        <input type="text" id="useremail" formControlName="useremail">
+      </form>
+      <button (click)="updateUserData()">Actualizar Datos</button>
+    </div>
+  </div>
+  

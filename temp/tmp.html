@@ -1,0 +1,44 @@
+<div class="menu-collapsed">
+  <div id="header">
+      <div id="title"><span>SISAMED</span></div>
+      <div id="menu-btn">
+          <div class="btn-hamburger"></div>
+          <div class="btn-hamburger"></div>
+          <div class="btn-hamburger"></div>
+      </div>
+  </div>
+  <!-- Perfil -->
+  <div id="profile">
+      <div id="photo">
+          <img src="#" alt="">
+      </div>
+      <div id="name"><span>Panel Administrador</span></div>
+  </div>
+  <!-- Items -->
+  <div id="menu-items">
+      <div class="item">
+          <a href="">
+              <div class="icon"><img src="#" alt=""></div>
+              <div class="title"><span>Pacientes</span></div>
+          </a>
+      </div>
+      <!-- Separador -->
+      <div class="item separator"></div>
+      <div id="menu-items">
+          <div class="item">
+              <a href="">
+                  <div class="icon"><img src="#" alt=""></div>
+                  <div class="title"><span>Medico</span></div>
+              </a>
+          </div>
+  </div>
+</div>
+<script>
+  const btn = document.querySelector('#menu-btn');
+  const menu = document.querySelector('#sidemenu');
+  btn.addEventListener('clic', e => {
+      menu.classList.toggle("menu-expander");
+      menu.classList.toggle("menu-collapsed");
+      document:querySelector('body').classList.toggle('body-expanded');
+  });
+</script>

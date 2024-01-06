@@ -1,0 +1,38 @@
+<div id="register-container">
+    <h2>Registro de Paciente</h2>
+    <form [formGroup]="pacienteForm" id="register-form" (ngSubmit)="registrarPaciente()">
+      <label for="pacTipoDoc">Tipo de Documento</label>
+      <select id="pacTipoDoc" formControlName="pacTipoDoc">
+        <option value="cc">Cédula de Ciudadanía</option>
+        <option value="ti">Tarjeta de Identidad</option>
+        <!-- Agrega más opciones según tus necesidades -->
+      </select>
+      <div *ngIf="pacienteForm.get('pacTipoDoc')?.invalid && (pacienteForm.get('pacTipoDoc')?.dirty || pacienteForm.get('pacTipoDoc')?.touched)" class="text-danger">
+        <div *ngIf="pacienteForm.get('pacTipoDoc')?.hasError('required')">Seleccione el tipo de documento</div>
+      </div>
+  
+      <label for="pacNumDoc">Número de Documento</label>
+      <input type="text" id="pacNumDoc" formControlName="pacNumDoc" placeholder="Número de Documento" required>
+      <div *ngIf="pacienteForm.get('pacNumDoc')?.invalid && (pacienteForm.get('pacNumDoc')?.dirty || pacienteForm.get('pacNumDoc')?.touched)" class="text-danger">
+        <div *ngIf="pacienteForm.get('pacNumDoc')?.hasError('required')">Digite el número de documento</div>
+      </div>
+  
+      <label for="pacNombres">Nombres</label>
+      <input type="text" id="pacNombres" formControlName="pacNombres" placeholder="Nombres" required>
+      <div *ngIf="pacienteForm.get('pacNombres')?.invalid && (pacienteForm.get('pacNombres')?.dirty || pacienteForm.get('pacNombres')?.touched)" class="text-danger">
+        <div *ngIf="pacienteForm.get('pacNombres')?.hasError('required')">Digite los nombres</div>
+      </div>
+  
+      <!-- Repite el patrón para los demás campos -->
+  
+      <div class="buttons-container">
+        <button type="submit" class="register-button">Registrar</button>
+        <button type="button" class="cancel-button" routerLink="/inicio">Cancelar</button>
+      </div>
+    </form>
+  
+    <!-- Agrega otros elementos o ajustes según sea necesario -->
+  
+  </div>
+  
+

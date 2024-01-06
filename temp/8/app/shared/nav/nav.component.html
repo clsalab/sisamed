@@ -1,0 +1,125 @@
+
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark" [ngClass]="{'fixed-navbar': isNavbarFixed}">
+    <div class="container-fluid">
+      <img src="assets/logo_sisamed2.png" alt="Logo de SISAMED" class="navbar-logo">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">      
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/inicio">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Portafolio</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Nosotros
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Quienes somos</a></li>
+              <li><a class="dropdown-item" href="#">Misión/Visión</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Contacto</a></li>
+            </ul>
+          </li>
+
+                    
+          <li *ngIf="userLoginOn" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Trámite Online
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item dropdown">
+                <a class="dropdown-item" routerLink="/usuario">Actualizar Datos</a>
+              </li>
+              <li class="dropdown-item dropdown">
+                <a class="dropdown-item" routerLink="/show-user">Certificado</a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item dropdown dropdown-start">
+                <a class="dropdown-item" href="#">Citas Médicas</a>
+                <ul class="dropdown-menu dropdown-menu-start">
+                  <li><a class="dropdown-item" href="#">Nueva cita</a></li>
+                  <li><a class="dropdown-item" href="#">Consultar</a></li>
+                  <li><a class="dropdown-item" href="#">Actualizar</a></li>
+                  <li><a class="dropdown-item" href="#">Cancelar</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          
+       
+          
+          <li *ngIf="userLoginOn" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Panel Médico
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Listar Citas</a></li>
+              <li><a class="dropdown-item" href="#">Historia Clínica</a></li>
+              <li class="dropdown-item dropdown dropdown-start">
+                <a class="dropdown-item" href="#">Tratamiento</a>
+                <ul class="dropdown-menu dropdown-menu-start">
+                  <li><a class="dropdown-item" href="#">Nueva Tratamiento</a></li>
+                  <li><a class="dropdown-item" href="#">Actualizar</a></li>
+                  <li><a class="dropdown-item" href="#">Eliminar</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          
+          <li *ngIf="userLoginOn" class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Panel Admin
+            </a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item dropdown">
+                <a class="dropdown-item" routerLink="/show-user">Paciente</a>
+              </li>
+              <li class="dropdown-item dropdown">
+                <a class="dropdown-item" href="#">Médico</a>
+              </li>
+              <li class="dropdown-item dropdown">
+                <a class="dropdown-item" href="#">Consultorio</a>
+              </li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item dropdown dropdown-start">
+                <a class="dropdown-item" href="#">Citas Médicas</a>
+                <ul class="dropdown-menu dropdown-menu-start">
+                  <li><a class="dropdown-item" href="#">Nueva Cita</a></li>
+                  <li><a class="dropdown-item" href="#">Consultar</a></li>
+                  <li><a class="dropdown-item" href="#">Actualizar</a></li>
+                  <li><a class="dropdown-item" href="#">Cancelar</a></li>
+                </ul>
+              </li>
+              <li class="dropdown-item dropdown dropdown-start">
+                <a class="dropdown-item" href="#">Reporte</a>
+                <ul class="dropdown-menu dropdown-menu-start">
+                  <li><a class="dropdown-item" href="#">Médicos</a></li>
+                  <li><a class="dropdown-item" href="#">Pacientes</a></li>
+                  <li><a class="dropdown-item" href="#">Citas</a></li>
+                  <li><a class="dropdown-item" href="#">Consultorio</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+          <li *ngIf="!userLoginOn" class="nav-item">
+            <button class="nav-link" (click)="redirectToLogin()">Iniciar Sesión</button>
+          </li>
+          <li *ngIf="userLoginOn" class="nav-item">
+            <button class="nav-link" (click)="logout()">Cerrar Sesión</button>
+          </li>
+          <li class="nav-item">
+            <button *ngIf="!userLoginOn" class="nav-link" (click)="redirectToRegister()">Regístrate</button>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>

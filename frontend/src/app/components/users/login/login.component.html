@@ -1,0 +1,32 @@
+<div *ngIf="loading" class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 text-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div *ngIf="!loading" id="container">
+    <div id="login-container">
+        <h2 class="titulo">Inicio de sesión</h2>
+        <form [formGroup]="loginForm" id="login-form">
+           
+            <input formControlName="useremail" type="text" id="username" placeholder="Usuario" required>
+            <div *ngIf="useremail.invalid && (useremail.dirty || useremail.touched)" class="text-danger">
+                <div *ngIf="useremail.errors?.['required']">Digite su correo electrónico</div>
+                <div *ngIf="useremail.errors?.['email']">
+                    El email debe tener un formato válido.
+                </div>
+            </div>
+            
+            <input formControlName="userpassword" type="password" id="userpassword" placeholder="Contraseña" required>
+            <div *ngIf="userpassword.invalid && (userpassword.dirty || userpassword.touched)" class="text-danger">
+                <div *ngIf="userpassword.errors?.['required']">Digite su contraseña</div>
+            </div>
+            
+            <p class="text-danger">{{loginError}}</p>           
+            <button type="button" class="cancel" (click)="cancel()">Cancelar</button>
+            <button class="btn btn-secondary register-button" type="button" [disabled]="loginForm.invalid" (click)="login()">Iniciar sesión</button>
+            <a href="#" id="forgot-userpassword">¿Olvidaste tu contraseña?</a>
+            <a routerLink="/register" id="register-link">¿No tienes cuenta? Regístrate</a>
+        </form>
+    </div>
+</div>
+

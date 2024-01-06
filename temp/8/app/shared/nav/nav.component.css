@@ -1,0 +1,24 @@
+/* Estilos para el menú fijo */
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.hidden-nav {
+  display: none;
+}
+
+  
+  .navbar-logo {
+    max-width: 338px; /* Ajusta según el tamaño deseado para tu logotipo */
+    height: 2em;
+    display: block; /* Evita que la imagen se extienda más allá del contenedor */
+  }
+
+/* Estilos para el submenu "Citas Médicas" */
+.dropdown-item.dropdown:hover .dropdown-menu-start {
+  display: block;
+}
+
+/* Ajustes de estilo adicionales según tus preferencias */

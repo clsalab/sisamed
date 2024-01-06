@@ -1,0 +1,148 @@
+<div *ngIf="loading" class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 text-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div *ngIf="!loading" class="container mt-3">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card" id="container">
+                <div class="card-body text-center" id="login-container">
+                    <span class="titulo">REGISTRAR PACIENTE</span>
+                    <form class="mt-3" [formGroup]="pacientesForm" (ngSubmit)="register()">
+                       <!--  //Tipo documento -->
+                        <div class="mb-3">
+                            <select formControlName="pacTipoDoc" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [attr.selected]="true">Tipo de Documento</option>
+                                <option value="rc">Registro Civil</option>
+                                <option value="ti">Tarjeta de Identidad</option>
+                                <option value="cc">Cedula de Ciudadanía</option>
+                                <option value="ce">Cedula extranjera</option>
+                                <option value="otro">Otro Documento</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="pacientesForm.get('pacTipoDoc')?.hasError('required') && pacientesForm.get('pacTipoDoc')?.touched">
+                                <span>Seleccione su tipo de documento</span>
+                            </div>
+                        </div>
+                        <!-- //input # Documento -->
+                        <div class="mb-3">
+                            <input type="number" formControlName="pacNumDoc" class="form-control" placeholder="Número de documento">
+                            <div class="text-danger" *ngIf="pacientesForm.get('pacNumDoc')?.hasError('required') && (pacientesForm.get('pacNumDoc')?.dirty || pacientesForm.get('pacNumDoc')?.touched)">
+                            <span>Digite su número de documento, sin puntos y sin comas</span>
+                            </div>
+                            <div class="text-danger" *ngIf="pacientesForm.get('pacNumDoc')?.hasError('invalidNumDoc')">
+                            {{ pacientesForm.get('pacNumDoc')?.getError('message') }}
+                            </div>
+                        </div>
+                        <!-- //input -Nombre -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="pacNombres" class="form-control" placeholder="Nombres">
+                            <div class="text-danger" *ngIf="pacientesForm.get('pacNombres')?.hasError('required') && (pacientesForm.get('pacNombres')?.dirty || pacientesForm.get('pacNombres')?.touched)">
+                                <span>Digite sus nombres</span>
+                            </div>
+                        </div>
+                       <!--  //input -Apellidos -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="pacApellidos" class="form-control" placeholder="Apellidos">
+                            <div class="text-danger" *ngIf="pacientesForm.get('pacApellidos')?.hasError('required') && (pacientesForm.get('pacApellidos')?.dirty || pacientesForm.get('pacApellidos')?.touched)">
+                                <span>Digite sus apellidos</span>
+                            </div>
+                        </div>
+                        <!-- //input -Fecha Nacimiento -->
+                        <div class="mb-3">
+                            <input type="date" formControlName="pacFechaNacimiento" class="form-control" placeholder="Nombres">
+                            <div class="text-danger" *ngIf="pacientesForm.get('pacFechaNacimiento')?.hasError('required') && (pacientesForm.get('pacFechaNacimiento')?.dirty || pacientesForm.get('pacFechaNacimiento')?.touched)">
+                                <span>Seleccione su fecha de nacimiento</span>
+                            </div>
+                        </div>
+                        <!-- //input -Genero -->
+                        <div class="mb-3">
+                            <select formControlName="pacSexo" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [attr.selected]="true">Genero</option>
+                                <option value="f">Femenino</option>
+                                <option value="m">Masculino</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="pacientesForm.get('pacSexo')?.hasError('required') && pacientesForm.get('pacSexo')?.touched">
+                                <span>Seleccione su genero</span>
+                            </div>
+                        </div>
+                       <!--  //input - Teléfono -->
+                    <div class="mb-3">
+                        <input type="number" formControlName="pacTelefono" class="form-control" placeholder="Celular">
+                        <div class="text-danger" *ngIf="pacientesForm.get('pacTelefono')?.hasError('required') && (pacientesForm.get('pacTelefono')?.dirty || pacientesForm.get('pacTelefono')?.touched)">
+                        <span>Digite su número de celular,no se admiten: puntos, comas o gion</span>
+                        </div>
+                        <div class="text-danger" *ngIf="pacientesForm.get('pacTelefono')?.hasError('invalidTelefono')">
+                        {{ pacientesForm.get('pacTelefono')?.getError('message') }}
+                        </div>
+                    </div>
+                       <!--  //Correo electrónico -->
+                        <!-- Correo electrónico -->
+                        <div class="mb-3">
+                            <input type="email" formControlName="pacCorreo" class="form-control" placeholder="Correo electrónico" required>
+                            <div *ngIf="pacientesForm.get('pacCorreo')?.invalid && (pacientesForm.get('pacCorreo')?.dirty || pacientesForm.get('pacCorreo')?.touched)"
+                            class="text-danger">
+                            <div *ngIf="pacientesForm.get('pacCorreo')?.hasError('required')">
+                                <span>Digite su correo electrónico</span> 
+                            </div>
+                            <div *ngIf="pacientesForm.get('pacCorreo')?.hasError('invalidEmail')">
+                                <span>{{ pacientesForm.get('pacCorreo')?.getError('message') }}</span> 
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- //input -Eps -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="pacEPS" class="form-control" placeholder="EPS">
+                            <div class="text-danger" *ngIf="pacientesForm.get('pacEPS')?.hasError('required') && (pacientesForm.get('pacEPS')?.dirty || pacientesForm.get('pacEPS')?.touched)">
+                                <span>Digite sus EPS</span>
+                            </div>
+                        </div>
+                       <!--  // Estado -->
+                        <!-- <div class="mb-3">
+                            <select formControlName="pacEstado" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [attr.selected]="true">Estado del Pacinte</option>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="pacientesForm.get('pacEstado')?.hasError('required') && pacientesForm.get('pacEstado')?.touched">
+                                <span>Seleccione el estado del paciente</span>
+                            </div>
+                        </div> -->
+                       <!--  //Pasword -->
+                        <!-- <div class="mb-3">
+                            <input type="password" formControlName="pacContrasena" class="form-control" placeholder="Contraseña">
+                            <div class="text-danger"
+                            *ngIf="pacientesForm.get('pacContrasena')?.hasError('required') && pacientesForm.get('pacContrasena')?.touched">
+                                <span>Digite una contraseña</span>
+                            </div>
+                        </div> -->
+                        <!-- Roles -->
+                        <!-- <div class="mb-3">
+                            <select formControlName="userroles" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [attr.selected]="true">Tipo de usuario</option>
+                                <option value="user">Usuario</option>
+                                <option value="admin">Administrador</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="pacientesForm.get('userroles')?.hasError('required') && pacientesForm.get('userroles')?.touched">
+                                <span>Seleccione el tipo de usuario</span>
+                            </div>
+                        </div> -->
+                        <!-- Message -->
+                        <div *ngIf="registrationMessage" class="message text-danger">{{ registrationMessage }}</div>
+                        <!-- Button -->
+                            <div class="buttons-container mb-3">
+                                <button class="btn btn-success cancel-button" routerLink="/panel-admin/items-pacientes">Cancelar</button>
+                                <button type="submit"  [disabled]="pacientesForm.invalid" class="btn btn-secondary register-button">Registrar</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
