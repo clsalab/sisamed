@@ -13,6 +13,7 @@ node_modules/
 /tmp
 /out-tsc
 /bazel-out
+/temp
 
 # Node
 /node_modules
