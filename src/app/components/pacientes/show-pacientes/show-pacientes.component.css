@@ -1,0 +1,24 @@
+
+.fa-solid {
+    cursor: pointer;
+    margin-left: 7px;
+}
+
+.nuevo {
+    background-color: #3498db;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.nuevo:hover {
+    background-color: #2980b9;
+}
+
+.titulo {
+    text-align: center;
+    color: #3498db;
+}
+
+
+

@@ -1,0 +1,22 @@
+<form (ngSubmit)="updateProfile()" #profileForm="ngForm">
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name" required>
+  
+    <label for="address">Dirección:</label>
+    <input type="text" id="address" name="address" [(ngModel)]="user.address" required>
+  
+    <label for="profilePicture">Foto de perfil:</label>
+    <input type="file" id="profilePicture" name="profilePicture" (change)="onFileSelected($event)">
+  
+    <button type="submit" [disabled]="profileForm.invalid">Actualizar Perfil</button>
+  </form>
+
+  <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+  

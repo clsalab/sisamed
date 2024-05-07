@@ -1,0 +1,149 @@
+<div *ngIf="loading" class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 text-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div *ngIf="!loading" class="container mt-3">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card" id="container">
+                <div class="card-body text-center" id="login-container">
+                    <span class="titulo">{{ titulo | uppercase}}</span>
+                    <form class="mt-3" [formGroup]="editPacienteForm" (ngSubmit)="actualizarPaciente()">
+                       <!--  //Tipo documento -->
+                        <div class="mb-3">
+                            <select formControlName="pacTipoDoc" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [selected]="!editPacienteForm.get('pacTipoDoc')?.value">Tipo de Documento</option>
+                                <option value="rc">Registro Civil</option>
+                                <option value="ti">Tarjeta de Identidad</option>
+                                <option value="cc">Cedula de Ciudadanía</option>
+                                <option value="ce">Cedula extranjera</option>
+                                <option value="otro">Otro Documento</option>
+                            </select>
+                            
+                            <div class="text-danger"
+                            *ngIf="editPacienteForm.get('pacTipoDoc')?.hasError('required') && editPacienteForm.get('pacTipoDoc')?.touched">
+                                <span>Seleccione su tipo de documento</span>
+                            </div>
+                        </div>
+                        <!-- //input # Documento -->
+                        <div class="mb-3">
+                            <input type="number" formControlName="pacNumDoc" class="form-control" placeholder="Número de documento">
+                            <div class="text-danger" *ngIf="editPacienteForm.get('pacNumDoc')?.hasError('required') && (editPacienteForm.get('pacNumDoc')?.dirty || editPacienteForm.get('pacNumDoc')?.touched)">
+                            <span>Digite su número de documento, sin puntos y sin comas</span>
+                            </div>
+                            <div class="text-danger" *ngIf="editPacienteForm.get('pacNumDoc')?.hasError('invalidNumDoc')">
+                            {{ editPacienteForm.get('pacNumDoc')?.getError('message') }}
+                            </div>
+                        </div>
+                        <!-- //input -Nombre -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="pacNombres" class="form-control" placeholder="Nombres">
+                            <div class="text-danger" *ngIf="editPacienteForm.get('pacNombres')?.hasError('required') && (editPacienteForm.get('pacNombres')?.dirty || editPacienteForm.get('pacNombres')?.touched)">
+                                <span>Digite sus nombres</span>
+                            </div>
+                        </div>
+                       <!--  //input -Apellidos -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="pacApellidos" class="form-control" placeholder="Apellidos">
+                            <div class="text-danger" *ngIf="editPacienteForm.get('pacApellidos')?.hasError('required') && (editPacienteForm.get('pacApellidos')?.dirty || editPacienteForm.get('pacApellidos')?.touched)">
+                                <span>Digite sus apellidos</span>
+                            </div>
+                        </div>
+                        <!-- //input -Fecha Nacimiento -->
+                        <div class="mb-3">
+                            <input type="date" formControlName="pacFechaNacimiento" class="form-control" placeholder="Fecha nacimiento">
+                            <div class="text-danger" *ngIf="editPacienteForm.get('pacFechaNacimiento')?.hasError('required') && (editPacienteForm.get('pacFechaNacimiento')?.dirty || editPacienteForm.get('pacFechaNacimiento')?.touched)">
+                                <span>Seleccione su fecha de nacimiento</span>
+                            </div>
+                        </div>
+                        <!-- //input -Genero -->
+                        <div class="mb-3">
+                            <select formControlName="pacSexo" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [selected]="!editPacienteForm.get('pacSexo')?.value">Genero</option>
+                                <option value="f">Femenino</option>
+                                <option value="m">Masculino</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="editPacienteForm.get('pacSexo')?.hasError('required') && editPacienteForm.get('pacSexo')?.touched">
+                                <span>Seleccione su genero</span>
+                            </div>
+                        </div>
+                       <!--  //input - Teléfono -->
+                    <div class="mb-3">
+                        <input type="number" formControlName="pacTelefono" class="form-control" placeholder="Celular">
+                        <div class="text-danger" *ngIf="editPacienteForm.get('pacTelefono')?.hasError('required') && (editPacienteForm.get('pacTelefono')?.dirty || editPacienteForm.get('pacTelefono')?.touched)">
+                        <span>Digite su número de celular,no se admiten: puntos, comas o gion</span>
+                        </div>
+                        <div class="text-danger" *ngIf="editPacienteForm.get('pacTelefono')?.hasError('invalidTelefono')">
+                        {{ editPacienteForm.get('pacTelefono')?.getError('message') }}
+                        </div>
+                    </div>
+                       <!--  //Correo electrónico -->
+                        <!-- Correo electrónico -->
+                        <div class="mb-3">
+                            <input type="email" formControlName="pacCorreo" class="form-control" placeholder="Correo electrónico" required>
+                            <div *ngIf="editPacienteForm.get('pacCorreo')?.invalid && (editPacienteForm.get('pacCorreo')?.dirty || editPacienteForm.get('pacCorreo')?.touched)"
+                            class="text-danger">
+                            <div *ngIf="editPacienteForm.get('pacCorreo')?.hasError('required')">
+                                <span>Digite su correo electrónico</span> 
+                            </div>
+                            <div *ngIf="editPacienteForm.get('pacCorreo')?.hasError('invalidEmail')">
+                                <span>{{ editPacienteForm.get('pacCorreo')?.getError('message') }}</span> 
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- //input -Eps -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="pacEPS" class="form-control" placeholder="EPS">
+                            <div class="text-danger" *ngIf="editPacienteForm.get('pacEPS')?.hasError('required') && (editPacienteForm.get('pacEPS')?.dirty || editPacienteForm.get('pacEPS')?.touched)">
+                                <span>Digite sus EPS</span>
+                            </div>
+                        </div>
+                       <!--  // Estado -->
+                        <div class="mb-3">
+                            <select formControlName="pacEstado" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [selected]="!editPacienteForm.get('pacEstado')?.value">Estado del Paciente</option>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="editPacienteForm.get('pacEstado')?.hasError('required') && editPacienteForm.get('pacEstado')?.touched">
+                                <span>Seleccione el estado del paciente</span>
+                            </div>
+                        </div>
+                       <!--  //Pasword -->
+                        <!-- <div class="mb-3">
+                            <input type="password" formControlName="pacContrasena" class="form-control" placeholder="Contraseña">
+                            <div class="text-danger"
+                            *ngIf="editPacienteForm.get('pacContrasena')?.hasError('required') && editPacienteForm.get('pacContrasena')?.touched">
+                                <span>Digite una contraseña</span>
+                            </div>
+                        </div> -->
+                        <!-- Roles -->
+                        <!-- <div class="mb-3">
+                            <select formControlName="userroles" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [attr.selected]="true">Tipo de usuario</option>
+                                <option value="user">Usuario</option>
+                                <option value="admin">Administrador</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="editPacienteForm.get('userroles')?.hasError('required') && editPacienteForm.get('userroles')?.touched">
+                                <span>Seleccione el tipo de usuario</span>
+                            </div>
+                        </div> -->
+                        <!-- Message -->
+                        <div *ngIf="registrationMessage" class="message text-danger">{{ registrationMessage }}</div>
+                        <!-- Button -->
+                            <div class="buttons-container mb-3">
+                                <button class="btn btn-success cancel-button" routerLink="/panel-admin/items-pacientes">Cancelar</button>
+                                <button type="submit"  [disabled]="editPacienteForm.invalid" class="btn btn-secondary register-button">Actualizar</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

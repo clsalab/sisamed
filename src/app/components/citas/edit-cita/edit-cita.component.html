@@ -1,0 +1,30 @@
+<!-- create-cita.component.html -->
+
+<div>
+    <form>
+    <!-- Campos del formulario para la asignación de citas -->
+    <label for="paciente">Seleccionar Paciente:</label>
+    <select id="paciente" [(ngModel)]="pacienteSeleccionado">
+        <option *ngFor="let paciente of pacientes" [value]="paciente.id">{{ paciente.nombre }}</option>
+    </select>
+
+    <label for="medico">Seleccionar Médico:</label>
+    <select id="medico" [(ngModel)]="medicoSeleccionado">
+        <option *ngFor="let medico of medicos" [value]="medico.id">{{ medico.nombre }}</option>
+    </select>
+
+    <label for="consultorio">Seleccionar Consultorio:</label>
+    <select id="consultorio" [(ngModel)]="consultorioSeleccionado">
+        <option *ngFor="let consultorio of consultorios" [value]="consultorio.id">{{ consultorio.nombre }}</option>
+    </select>
+
+    <label for="fecha">Fecha de la Cita:</label>
+    <input type="date" id="fecha" [(ngModel)]="fechaCita">
+
+    <label for="hora">Hora de la Cita:</label>
+    <input type="time" id="hora" [(ngModel)]="horaCita">
+
+    <button (click)="asignarCita()">Asignar Cita</button>
+    </form>
+</div>
+

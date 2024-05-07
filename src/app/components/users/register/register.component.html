@@ -1,0 +1,50 @@
+<div *ngIf="loading" class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 text-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div *ngIf="!loading" id="register-container">
+    <h2 class="titulo">Registro de Usuario</h2>
+    <form [formGroup]="registerForm" id="register-form" (ngSubmit)="register()">
+        
+        <input formControlName="username" type="text" id="username" placeholder="Nombre completo" required>
+        <div *ngIf="registerForm.get('username')?.invalid && (registerForm.get('username')?.dirty || registerForm.get('username')?.touched)"
+            class="text-danger">
+            <div *ngIf="registerForm.get('username')?.hasError('required')">Digite su nombre completo</div>
+            <div *ngIf="registerForm.get('username')?.hasError('duplicateUsername')">
+              Este nombre de usuario ya existe. Por favor, elige otro.
+              </div>
+        </div>
+  
+       
+        <input formControlName="useremail" type="text" id="useremail" placeholder="Correo electrónico" required>
+        <div *ngIf="registerForm.get('useremail')?.invalid && (registerForm.get('useremail')?.dirty || registerForm.get('useremail')?.touched)"
+            class="text-danger">
+            <div *ngIf="registerForm.get('useremail')?.hasError('required')">Digite su correo electrónico</div>
+            <div *ngIf="registerForm.get('useremail')?.hasError('email')">
+                El email debe tener un formato válido.
+            </div>        
+        </div>
+  
+        
+        <input formControlName="userpassword" type="password" id="userpassword" placeholder="Contraseña" required>
+        <div *ngIf="registerForm.get('userpassword')?.invalid && (registerForm.get('userpassword')?.dirty || registerForm.get('userpassword')?.touched)"
+            class="text-danger">
+            <div *ngIf="registerForm.get('userpassword')?.hasError('required')">Digite su contraseña</div>
+        </div>
+        <div *ngIf="registrationMessage" class="message text-danger">{{ registrationMessage }}</div>
+  
+        <!-- Agrega otros campos según tus necesidades -->
+  
+        <div class="buttons-container">
+            <button type="button" class="cancel-button" routerLink="/inicio">Cancelar</button>
+            <button type="submit" [disabled]="registerForm.invalid" class="btn btn-secondary register-button">Registrar</button>
+        </div>
+    </form>
+  
+    <p class="login-link">¿Ya tienes una cuenta? <a routerLink="/login">Iniciar Sesión</a></p>
+  </div>
+  
+  
+  
+  

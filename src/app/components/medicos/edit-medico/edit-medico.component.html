@@ -1,0 +1,164 @@
+<div *ngIf="loading" class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 text-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div *ngIf="!loading" class="container mt-3">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card" id="container">
+                <div class="card-body text-center" id="login-container">
+                    <span class="titulo">{{ titulo | uppercase}}</span>
+                    <form class="mt-3" [formGroup]="editMedicoForm" (ngSubmit)="actualizarMedico()">
+                       <!--  //Tipo documento -->
+                        <div class="mb-3">
+                            <select formControlName="medTipoDoc" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [selected]="!editMedicoForm.get('medTipoDoc')?.value">Tipo de Documento</option>
+                                <option value="rc">Registro Civil</option>
+                                <option value="ti">Tarjeta de Identidad</option>
+                                <option value="cc">Cedula de Ciudadanía</option>
+                                <option value="ce">Cedula extranjera</option>
+                                <option value="otro">Otro Documento</option>
+                            </select>
+                            
+                            <div class="text-danger"
+                            *ngIf="editMedicoForm.get('medTipoDoc')?.hasError('required') && editMedicoForm.get('medTipoDoc')?.touched">
+                                <span>Seleccione su tipo de documento</span>
+                            </div>
+                        </div>
+                        <!-- //input # Documento -->
+                        <div class="mb-3">
+                            <input type="number" formControlName="medNumDoc" class="form-control" placeholder="Número de documento">
+                            <div class="text-danger" *ngIf="editMedicoForm.get('medNumDoc')?.hasError('required') && (editMedicoForm.get('medNumDoc')?.dirty || editMedicoForm.get('medNumDoc')?.touched)">
+                            <span>Digite su número de documento, sin puntos y sin comas</span>
+                            </div>
+                            <div class="text-danger" *ngIf="editMedicoForm.get('medNumDoc')?.hasError('invalidNumDoc')">
+                            {{ editMedicoForm.get('medNumDoc')?.getError('message') }}
+                            </div>
+                        </div>
+                        <!-- //input -Nombre -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="medNombres" class="form-control" placeholder="Nombres">
+                            <div class="text-danger" *ngIf="editMedicoForm.get('medNombres')?.hasError('required') && (editMedicoForm.get('medNombres')?.dirty || editMedicoForm.get('medNombres')?.touched)">
+                                <span>Digite sus nombres</span>
+                            </div>
+                        </div>
+                       <!--  //input -Apellidos -->
+                        <div class="mb-3">
+                            <input type="text" formControlName="medApellidos" class="form-control" placeholder="Apellidos">
+                            <div class="text-danger" *ngIf="editMedicoForm.get('medApellidos')?.hasError('required') && (editMedicoForm.get('medApellidos')?.dirty || editMedicoForm.get('medApellidos')?.touched)">
+                                <span>Digite sus apellidos</span>
+                            </div>
+                        </div>
+                         <!--  //Tipo Especialidad -->
+                        <div class="mb-3">
+                            <select formControlName="medEspecialidad" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [selected]="!editMedicoForm.get('medEspecialidad')?.value">Especialidad</option>
+                                <option value="mg">Médico General</option>
+                                <option value="ti">Médico Odontólogo</option>
+                                <option value="cc">Médico Cirujano</option>
+                                <option value="ce">Ginecólogo</option>
+                                <option value="otro">Otra especialidad</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="editMedicoForm.get('medEspecialidad')?.hasError('required') && editMedicoForm.get('medEspecialidad')?.touched">
+                                <span>Seleccione la especialidad del médico</span>
+                            </div>
+                        </div>
+                        <!-- //input -Fecha Nacimiento -->
+                        <div class="mb-3">
+                            <input type="date" formControlName="medFechaNacimiento" class="form-control" placeholder="Fecha nacimiento">
+                            <div class="text-danger" *ngIf="editMedicoForm.get('medFechaNacimiento')?.hasError('required') && (editMedicoForm.get('medFechaNacimiento')?.dirty || editMedicoForm.get('medFechaNacimiento')?.touched)">
+                                <span>Seleccione su fecha de nacimiento</span>
+                            </div>
+                        </div>
+                        <!-- //input -Genero -->
+                        <div class="mb-3">
+                            <select formControlName="medSexo" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [selected]="!editMedicoForm.get('medSexo')?.value">Genero</option>
+                                <option value="f">Femenino</option>
+                                <option value="m">Masculino</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="editMedicoForm.get('medSexo')?.hasError('required') && editMedicoForm.get('medSexo')?.touched">
+                                <span>Seleccione su genero</span>
+                            </div>
+                        </div>
+                       <!--  //input - Teléfono -->
+                    <div class="mb-3">
+                        <input type="number" formControlName="medTelefono" class="form-control" placeholder="Celular">
+                        <div class="text-danger" *ngIf="editMedicoForm.get('medTelefono')?.hasError('required') && (editMedicoForm.get('medTelefono')?.dirty || editMedicoForm.get('medTelefono')?.touched)">
+                        <span>Digite su número de celular,no se admiten: puntos, comas o gion</span>
+                        </div>
+                        <div class="text-danger" *ngIf="editMedicoForm.get('medTelefono')?.hasError('invalidTelefono')">
+                        {{ editMedicoForm.get('medTelefono')?.getError('message') }}
+                        </div>
+                    </div>
+                       <!--  //Correo electrónico -->
+                        <!-- Correo electrónico -->
+                        <div class="mb-3">
+                            <input type="email" formControlName="medCorreo" class="form-control" placeholder="Correo electrónico" required>
+                            <div *ngIf="editMedicoForm.get('medCorreo')?.invalid && (editMedicoForm.get('medCorreo')?.dirty || editMedicoForm.get('medCorreo')?.touched)"
+                            class="text-danger">
+                            <div *ngIf="editMedicoForm.get('medCorreo')?.hasError('required')">
+                                <span>Digite su correo electrónico</span> 
+                            </div>
+                            <div *ngIf="editMedicoForm.get('medCorreo')?.hasError('invalidEmail')">
+                                <span>{{ editMedicoForm.get('medCorreo')?.getError('message') }}</span> 
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- //input -Eps -->
+                        <!-- <div class="mb-3">
+                            <input type="text" formControlName="medEPS" class="form-control" placeholder="EPS">
+                            <div class="text-danger" *ngIf="editMedicoForm.get('medEPS')?.hasError('required') && (editMedicoForm.get('medEPS')?.dirty || editMedicoForm.get('medEPS')?.touched)">
+                                <span>Digite sus EPS</span>
+                            </div>
+                        </div> -->
+                       <!--  // Estado -->
+                        <div class="mb-3">
+                            <select formControlName="medEstado" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [selected]="!editMedicoForm.get('medEstado')?.value">Estado del Médico</option>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="editMedicoForm.get('medEstado')?.hasError('required') && editMedicoForm.get('medEstado')?.touched">
+                                <span>Seleccione el estado del Médico</span>
+                            </div>
+                        </div>
+                       <!--  //Pasword -->
+                        <!-- <div class="mb-3">
+                            <input type="password" formControlName="medContrasena" class="form-control" placeholder="Contraseña">
+                            <div class="text-danger"
+                            *ngIf="editMedicoForm.get('medContrasena')?.hasError('required') && editMedicoForm.get('medContrasena')?.touched">
+                                <span>Digite una contraseña</span>
+                            </div>
+                        </div> -->
+                        <!-- Roles -->
+                        <div class="mb-3">
+                            <select formControlName="userroles" class="form-control form-select" aria-label="Default select example">
+                                <option [value]="null" [attr.disabled]="true" [selected]="!editMedicoForm.get('userroles')?.value">Tipo de usuario</option>
+                                <option value="user">Usuario</option>
+                                <option value="admin">Administrador</option>
+                            </select>
+                            <div class="text-danger"
+                            *ngIf="editMedicoForm.get('userroles')?.hasError('required') && editMedicoForm.get('userroles')?.touched">
+                                <span>Seleccione el tipo de usuario</span>
+                            </div>
+                        </div> 
+                        <!-- Message -->
+                        <div *ngIf="registrationMessage" class="message text-danger">{{ registrationMessage }}</div>
+                        <!-- Button -->
+                            <div class="buttons-container mb-3">
+                                <button class="btn btn-success cancel-button" routerLink="/panel-admin/items-medicos">Cancelar</button>
+                                <button type="submit"  [disabled]="editMedicoForm.invalid" class="btn btn-secondary register-button">Actualizar</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

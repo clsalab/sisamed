@@ -1,0 +1,61 @@
+<div *ngIf="loading" class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 text-center">
+        <p-progressSpinner></p-progressSpinner>
+    </div>
+</div>
+<div *ngIf="!loading && userLoginOn" class="container mt-3">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="titulo mb-3">LISTADO DE MEDICO</h5>
+
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input id="searchInput" [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="Buscar por nombre">
+                    </div>
+                </div>
+                <button class="btn btn-primary" routerLink="/panel-admin/register-medico">Nuevo</button>
+            </div>
+            <div class="text-center">
+            <table *ngIf="listMedicos.length > 0" class="table mt-4 mx-auto">
+                <thead>
+                    <tr>
+                        <!-- Otros encabezados -->
+                        <th scope="col" class="text-center">T.D</th>
+                        <th scope="col" class="text-center">Número Doc</th>
+                        <th scope="col" class="text-center">Apellidos</th>
+                        <th scope="col" class="text-center">Nombres</th>
+                        <th scope="col" class="text-center">Genero</th>
+                        <th scope="col" class="text-center">Especialidad</th>
+                        <th scope="col" class="text-center">Fecha Nac</th>
+                        <th scope="col" class="text-center">Movil</th>
+                        <th scope="col" class="text-center">Email</th>
+                        <th scope="col" class="text-center">Estado</th>
+                        <th scope="col" class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr *ngFor="let medico of listMedicos | filter: searchTerm">
+                        <td>{{medico.medTipoDoc}}</td>
+                        <td>{{medico.medNumDoc}}</td>
+                        <td>{{medico.medApellidos}}</td>
+                        <td>{{medico.medNombres}}</td>
+                        <td>{{medico.medSexo}}</td>
+                        <td>{{medico.medEspecialidad}}</td>
+                        <td>{{ medico.medFechaNacimiento | date:'yy/MM/dd' }}</td>
+                        <td>{{medico.medTelefono}}</td>
+                        <td>{{medico.medCorreo}}</td>
+                        <td>{{medico.medEstado}}</td>
+                        <td>
+                            <i [routerLink]="['/panel-admin/edit-medico/', medico._id]" class="fa-solid fa-pen-to-square text-primary"></i>
+                            <i (click)="eliminarMedico(medico._id)" class="fa-solid fa-trash text-danger"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ng-template #loading>Cargando...</ng-template>
+            <h5 style="text-align: start; margin-top: 10px;" *ngIf="listMedicos.length == 0">No hay Médicos para mostrar</h5>
+        </div>
+    </div>
+</div>
